@@ -7,7 +7,7 @@
                 d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                 clip-rule="evenodd" />
         </svg>
-        <a class="px-2">Cross Country</a>
+        <a class="px-2" to="/cross-country">Cross Country</a>
     </div>
     <h1 class="px-2 py-1 mb-8 text-4xl font-black">Cross Country</h1>
     <div
@@ -36,8 +36,8 @@
     </div>
     <div class="card__collection clear-fix pt-8">
         <div class="cards cursor-pointer" v-for="item of items" :key="item.id">
-          <router-link :to="'/cross-country/' + item.id">
-            <img :src="require('@/assets/img/' + item.img + '.jpg')" class="w-full h-auto" alt="">
+          <router-link :to="'/items/' + item.id">
+            <img :src="item.img" class="w-full h-auto" alt="">
             <span class="cards__rect-1">
                 <span class="shadow-1">
                     <p>{{item.label}}</p>
@@ -65,14 +65,19 @@
 </template>
 
 <script>
+import Joris from '../assets/img/joris-meier-U6X0AH1v5Ak-unsplash.jpg';
+import Mika from '../assets/img/mika-9IeEFATw1Xk-unsplash.jpg';
+import Phillip from '../assets/img/phillip-belena-eY-iYrKGOkw-unsplash.jpg';
+import Simon from '../assets/img/simon-berger-PcVqr8v4XaA-unsplash.jpg';
+
 export default {
   name: 'CrossCountry',
   data: () => {
     const items = [
-  {id: 1, img: 'joris-meier-U6X0AH1v5Ak-unsplash', label: 'Xtreams backback 2', price: 150},
-  {id: 2, img: 'mika-9IeEFATw1Xk-unsplash', label: 'Snoowproofz pants', price: 100},
-  {id: 3, img: 'phillip-belena-eY-iYrKGOkw-unsplash', label: 'Randonnia skis', price: 250},
-  {id: 4, img: 'simon-berger-PcVqr8v4XaA-unsplash', label: 'Warmerer suit', price: 280},
+  {id: 1, img: Joris, label: 'Xtreams backback 2', price: 150},
+  {id: 2, img: Mika, label: 'Snoowproofz pants', price: 100},
+  {id: 3, img: Phillip, label: 'Randonnia skis', price: 250},
+  {id: 4, img: Simon, label: 'Warmerer suit', price: 280},
 ]
 return {items}
   },
@@ -88,7 +93,11 @@ return {items}
 
 @layer base {
   .breadcrumb {
-    @apply flex flex-row my-8;
+    @apply flex flex-row my-8 font-mono;
+  }
+
+   .breadcrumb a {
+    @apply cursor-pointer;
   }
 
   .card__collection {

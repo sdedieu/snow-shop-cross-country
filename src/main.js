@@ -2,19 +2,20 @@ import { createApp } from "vue";
 import App from "./App.vue";
 import "./style.css";
 import { createWebHistory, createRouter } from "vue-router";
-import CrossCountry from "@/components/CrossCountry.vue";
-import CrossCountryDetails from "@/components/CrossCountryDetails.vue";
+import CrossCountry from "./components/CrossCountry.vue";
+import CrossCountryDetails from "./components/CrossCountryDetails.vue";
 
 const routes = [
   {
-    path: "/cross-country",
+    path: "/items",
     name: "CrossCountry",
     component: CrossCountry,
   },{
-    path: "/cross-country/:id",
+    path: "/items/:id",
     name: "CrossCountryDetails",
     component: CrossCountryDetails,
   },
+  { path: '/cross-country', redirect: { name: 'CrossCountry' }},
   { path: '/', redirect: { name: 'CrossCountry' }}
 ];
 
@@ -23,4 +24,11 @@ const router = createRouter({
   routes,
 });
 
-createApp(App).use(router).mount("#app");
+export class MfeVue extends HTMLElement {
+  connectedCallback() {
+      
+    createApp(App).use(router).mount(this);
+  }
+}
+
+customElements.define('crosscountry-page-element', MfeVue);

@@ -18,7 +18,7 @@
     <div class="flex flex-row pt-8">
         <div class="flex-1 clear-fix">
             <div class="cards">
-             <img :src="require('@/assets/img/' + item.img + '.jpg')" class="w-full h-auto" alt=""> 
+             <img :src="item.img" class="w-full h-auto" alt=""> 
             </div>
         </div>
         <div class="flex-1 flex flex-col px-8">
@@ -69,10 +69,12 @@
 </template>
 
 <script>
+import Joris from '../assets/img/joris-meier-U6X0AH1v5Ak-unsplash.jpg';
+
 export default {
   name: 'CrossCountryDetails',
   data: () => {
-    const item = {id: 1, img: 'joris-meier-U6X0AH1v5Ak-unsplash', label: 'Xtreams backback 2', price: 150};
+    const item = {id: 1, img: Joris, label: 'Xtreams backback 2', price: 150};
 const sizes = [{ id: 1, label: 'XS' },
   { id: 2, label: 'S' },
   { id: 3, label: 'M' },
@@ -94,8 +96,12 @@ return {item, sizes, sizeSelected}
 @tailwind utilities;
 
 @layer base {
-  .breadcrumb {
-    @apply flex flex-row my-8;
+   .breadcrumb {
+    @apply flex flex-row my-8 font-mono;
+  }
+
+   .breadcrumb a {
+    @apply cursor-pointer;
   }
 
   .size-card {
