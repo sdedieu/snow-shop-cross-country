@@ -13,16 +13,16 @@
                 d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                 clip-rule="evenodd" />
         </svg>
-        <a class="px-2">{{item.label}}</a>
+        <a class="px-2">{{item?.label}}</a>
     </div>
     <div class="flex flex-row pt-8">
         <div class="flex-1 clear-fix">
             <div class="cards">
-             <img :src="item.img" class="w-full h-auto" alt=""> 
+             <img :src="item?.img" class="w-full h-auto" alt=""> 
             </div>
         </div>
         <div class="flex-1 flex flex-col px-8">
-            <h1 class="py-1 mb-8 text-4xl font-black">{{item.label}}</h1>
+            <h1 class="py-1 mb-8 text-4xl font-black">{{item?.label}}</h1>
             <div class="flex mb-4 flex-row text-xl">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-300" viewBox="0 0 20 20"
                     fill="currentColor">
@@ -53,14 +53,14 @@
                 <span class="px-1 text-gray-500">(14)</span>
             </div>
             <div class="text-3xl my-4">
-                {{item.price}} $
+                {{item?.price}} $
             </div>
             <div class="flex flex-row my-4">
                 <div class="size-card" 
                 v-for="size of sizes" 
                 :key="size.id"
-                :class="{'ml-0': size.id === 1, 'selected': size.id === sizeSelected}"
-                @click="sizeSelected = size.id">{{size.label}}</div>
+                :class="{'ml-0': size.id === 1, 'selected': size?.id === sizeSelected}"
+                @click="sizeSelected = size.id">{{size?.label}}</div>
             </div>
             <button class="my-4 py-4 bg-black hover:bg-green-special rounded-md text-white text-xl text-center w-full mx-1 cursor-pointer transition-all duration-300 ease-in-out">Commander</button>
         </div>
@@ -69,23 +69,36 @@
 </template>
 
 <script>
-import Joris from '../assets/img/joris-meier-U6X0AH1v5Ak-unsplash.jpg';
+import { useRoute } from 'vue-router'
+import axios from 'axios'
 
 export default {
   name: 'CrossCountryDetails',
   data: () => {
-    const item = {id: 1, img: Joris, label: 'Xtreams backback 2', price: 150};
-const sizes = [{ id: 1, label: 'XS' },
-  { id: 2, label: 'S' },
-  { id: 3, label: 'M' },
-  { id: 4, label: 'L' },
-  { id: 5, label: 'XL' }]
+    const item = null;
+    const sizes = [{ id: 1, label: 'XS' },
+      { id: 2, label: 'S' },
+      { id: 3, label: 'M' },
+      { id: 4, label: 'L' },
+      { id: 5, label: 'XL' }]
 
-  const sizeSelected = 0;
-
-return {item, sizes, sizeSelected}
+    const sizeSelected = 0;
+    return {item, sizes, sizeSelected}
   },
-  methods: {}
+  methods: {
+    async getData(id){
+      try {
+       const res = await axios.get('http://localhost:3000/cross-country/' + id);
+        this.item = res.data; 
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  },
+  created() {
+    const route = useRoute();
+    this.getData(route.params.id)
+  }
 }
 </script>
 

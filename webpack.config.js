@@ -12,8 +12,8 @@ module.exports = () => {
     },
     entry: "./src/index.js",
     output: {
-      filename: "[bundle].js",
-      publicPath: "auto",
+      filename: "[bundle].js", 
+      publicPath: 'auto',
       uniqueName: "vue",
       chunkFilename: "[name].js",
     },
@@ -70,7 +70,7 @@ module.exports = () => {
         exposes: {
           "./Module": "./src/main.js",
         },
-        shared: ["vue", "core-js"],
+        shared: ["vue", "core-js", "axios"],
       }),
      new htmlWebpackPlugin({
         template: path.resolve(__dirname, "public", "index.html"),
@@ -79,6 +79,7 @@ module.exports = () => {
     ],
     devServer: {
       port: 4202,
+      historyApiFallback: true
     },
   };
 };

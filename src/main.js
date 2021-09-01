@@ -7,11 +7,11 @@ import CrossCountryDetails from "./components/CrossCountryDetails.vue";
 
 const routes = [
   {
-    path: "/items",
+    path: "/cross-country/items",
     name: "CrossCountry",
     component: CrossCountry,
   },{
-    path: "/items/:id",
+    path: "/cross-country/items/:id",
     name: "CrossCountryDetails",
     component: CrossCountryDetails,
   },

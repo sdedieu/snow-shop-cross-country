@@ -1,7 +1,7 @@
 <template>
   <div class="px-4 md:px-16">
     <div class="breadcrumb">
-        <a class="px-2">Home</a>
+        <a class="px-2" to="/">Home</a>
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd"
                 d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
@@ -9,7 +9,7 @@
         </svg>
         <a class="px-2" to="/cross-country">Cross Country</a>
     </div>
-    <h1 class="px-2 py-1 mb-8 text-4xl font-black">Cross Country</h1>
+    <h1 class="px-2 py-1 mb-8 text-4xl font-black font-mono">Cross Country</h1>
     <div
         class="font-sans text-2xl border-t-2 border-b-2 h-20 sticky z-50 bg-white px-16 flex flex-row items-center justify-between">
         <div class="flex flex-initial items-center text-center">
@@ -36,7 +36,7 @@
     </div>
     <div class="card__collection clear-fix pt-8">
         <div class="cards cursor-pointer" v-for="item of items" :key="item.id">
-          <router-link :to="'/items/' + item.id">
+          <router-link :to="'items/' + item.id">
             <img :src="item.img" class="w-full h-auto" alt="">
             <span class="cards__rect-1">
                 <span class="shadow-1">
@@ -65,23 +65,27 @@
 </template>
 
 <script>
-import Joris from '../assets/img/joris-meier-U6X0AH1v5Ak-unsplash.jpg';
-import Mika from '../assets/img/mika-9IeEFATw1Xk-unsplash.jpg';
-import Phillip from '../assets/img/phillip-belena-eY-iYrKGOkw-unsplash.jpg';
-import Simon from '../assets/img/simon-berger-PcVqr8v4XaA-unsplash.jpg';
+import axios from 'axios'
 
 export default {
   name: 'CrossCountry',
   data: () => {
-    const items = [
-  {id: 1, img: Joris, label: 'Xtreams backback 2', price: 150},
-  {id: 2, img: Mika, label: 'Snoowproofz pants', price: 100},
-  {id: 3, img: Phillip, label: 'Randonnia skis', price: 250},
-  {id: 4, img: Simon, label: 'Warmerer suit', price: 280},
-]
-return {items}
+    const items = []
+    return {items}
   },
-  methods: {}
+  methods: {
+    async getData() {
+      try {
+       const res =  await axios.get('http://localhost:3000/cross-country');
+        this.items = res.data; 
+      } catch (error) {
+        console.error(error)
+      }
+    }
+  },
+  created() {
+    this.getData()
+  }
 }
 </script>
 
