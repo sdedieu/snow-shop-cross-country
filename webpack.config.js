@@ -1,5 +1,3 @@
-const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
-// const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { VueLoaderPlugin } = require("vue-loader");
 const htmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
@@ -60,18 +58,7 @@ module.exports = () => {
       ],
     },
     plugins: [
-      new VueLoaderPlugin(),
-
-      new ModuleFederationPlugin({
-        // For remotes (please adjust)
-        name: "crossCountry",
-        library: { type: "var", name: "crossCountry" },
-        filename: "remoteEntry.js",
-        exposes: {
-          "./Module": "./src/main.js",
-        },
-        shared: ["vue", "core-js", "axios"],
-      }),
+     new VueLoaderPlugin(),
      new htmlWebpackPlugin({
         template: path.resolve(__dirname, "public", "index.html"),
         favicon: "./public/favicon.ico",

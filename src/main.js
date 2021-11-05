@@ -24,11 +24,4 @@ const router = createRouter({
   routes,
 });
 
-export class MfeVue extends HTMLElement {
-  connectedCallback() {
-      
-    createApp(App).use(router).mount(this);
-  }
-}
-
-customElements.define('crosscountry-page-element', MfeVue);
+createApp(App).use(router).mount('#App');
