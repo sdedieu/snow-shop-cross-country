@@ -104,11 +104,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped> 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
    .breadcrumb {
     @apply flex flex-row my-8 font-mono;
   }
@@ -222,7 +217,6 @@ export default {
   .cards__list li:nth-child(3) {
     @apply transition delay-400;
   }
-}
 
 .cards:hover .cards__rect-1 {
   left: 10%;
