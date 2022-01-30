@@ -10,14 +10,13 @@ const routes = [
     path: "/cross-country/items",
     name: "CrossCountry",
     component: CrossCountry,
-  },
-  {
+  },{
     path: "/cross-country/items/:id",
     name: "CrossCountryDetails",
     component: CrossCountryDetails,
   },
-  { path: "/cross-country", redirect: { name: "CrossCountry" } },
-  { path: "/", redirect: { name: "CrossCountry" } },
+  { path: '/cross-country', redirect: { name: 'CrossCountry' }},
+  { path: '/', redirect: { name: 'CrossCountry' }}
 ];
 
 const router = createRouter({
@@ -25,13 +24,15 @@ const router = createRouter({
   routes,
 });
 
-createApp(App).use(router).mount("#App");
+createApp(App).use(router).mount('#App');
 
 /*
-export class Mfe extends HTMLElement {
-    connectedCallBack() {
-      createApp(App).use(router).mount(this)
-    }
+export class MfeVue extends HTMLElement {
+  connectedCallback() {
+      
+    createApp(App).use(router).mount(this);
   }
-  customElements.define('cross-country-web-component', Mfe);
+}
+
+customElements.define('cross-country-web-component', MfeVue);
 */
