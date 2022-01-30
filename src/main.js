@@ -33,5 +33,5 @@ export class Mfe extends HTMLElement {
       createApp(App).use(router).mount(this)
     }
   }
-  customElements.define('mfe-web-component', Mfe);
+  customElements.define('cross-country-web-component', Mfe);
 */

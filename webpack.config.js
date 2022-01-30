@@ -1,3 +1,4 @@
+const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 const { VueLoaderPlugin } = require("vue-loader");
 const htmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
@@ -63,7 +64,6 @@ module.exports = () => {
         template: path.resolve(__dirname, "public", "index.html"),
         favicon: "./public/favicon.ico",
       }),
-      /*
       new ModuleFederationPlugin({
         // For remotes (please adjust)
         name: "mfe",
@@ -74,7 +74,6 @@ module.exports = () => {
         },
         shared: ["vue", "core-js", "axios"],
       }),
-      */
     ],
     devServer: {
       port: 4202,
