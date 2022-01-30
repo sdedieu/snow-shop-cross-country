@@ -10,8 +10,8 @@ module.exports = () => {
     },
     entry: "./src/index.js",
     output: {
-      filename: "[bundle].js", 
-      publicPath: 'auto',
+      filename: "[bundle].js",
+      publicPath: "auto",
       uniqueName: "vue",
       chunkFilename: "[name].js",
     },
@@ -58,15 +58,27 @@ module.exports = () => {
       ],
     },
     plugins: [
-     new VueLoaderPlugin(),
-     new htmlWebpackPlugin({
+      new VueLoaderPlugin(),
+      new htmlWebpackPlugin({
         template: path.resolve(__dirname, "public", "index.html"),
         favicon: "./public/favicon.ico",
       }),
+      /*
+      new ModuleFederationPlugin({
+        // For remotes (please adjust)
+        name: "mfe",
+        library: { type: "var", name: "mfe" },
+        filename: "remoteEntry.js",
+        exposes: {
+          "./module": ".//src/main.js",
+        },
+        shared: ["vue", "core-js", "axios"],
+      }),
+      */
     ],
     devServer: {
       port: 4202,
-      historyApiFallback: true
+      historyApiFallback: true,
     },
   };
 };
