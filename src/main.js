@@ -24,9 +24,9 @@ const router = createRouter({
   routes,
 });
 
-createApp(App).use(router).mount('#App');
+//createApp(App).use(router).mount('#App');
 
-/*
+
 export class MfeVue extends HTMLElement {
   connectedCallback() {
       
@@ -35,4 +35,3 @@ export class MfeVue extends HTMLElement {
 }
 
 customElements.define('cross-country-web-component', MfeVue);
-*/

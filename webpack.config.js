@@ -66,11 +66,11 @@ module.exports = () => {
       }),
       new ModuleFederationPlugin({
         // For remotes (please adjust)
-        name: "mfe",
-        library: { type: "var", name: "mfe" },
+        name: "crosscountry",
+        library: { type: "var", name: "crosscountry" },
         filename: "remoteEntry.js",
         exposes: {
-          "./module": ".//src/main.js",
+          "./module": ".//src/index.js",
         },
         shared: ["vue", "core-js", "axios"],
       }),
