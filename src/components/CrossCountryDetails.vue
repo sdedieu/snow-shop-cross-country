@@ -62,7 +62,7 @@
                 :class="{'ml-0': size.id === 1, 'selected': size?.id === sizeSelected}"
                 @click="sizeSelected = size.id">{{size?.label}}</div>
             </div>
-            <button class="my-4 py-4 bg-black hover:bg-green-special rounded-md text-white text-xl text-center w-full mx-1 cursor-pointer transition-all duration-300 ease-in-out">Commander</button>
+            <button class="my-4 py-4 bg-black hover:bg-green-special rounded-md text-white text-xl text-center w-full mx-1 cursor-pointer transition-all duration-300 ease-in-out" @click="increment()">Commander</button>
         </div>
     </div>
 </div>
@@ -93,6 +93,10 @@ export default {
       } catch (error) {
         console.log(error)
       }
+    },
+    increment(){
+      const event = new CustomEvent('increment', {detail: {by: 1}});
+      window.dispatchEvent(event);
     }
   },
   created() {
